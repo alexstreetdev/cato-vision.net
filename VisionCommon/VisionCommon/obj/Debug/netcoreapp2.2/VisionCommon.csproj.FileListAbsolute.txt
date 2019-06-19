@@ -1,0 +1,9 @@
+F:\alexstreetdev\cato-vision.net\VisionCommon\VisionCommon\bin\Debug\netcoreapp2.2\VisionCommon.deps.json
+F:\alexstreetdev\cato-vision.net\VisionCommon\VisionCommon\bin\Debug\netcoreapp2.2\VisionCommon.dll
+F:\alexstreetdev\cato-vision.net\VisionCommon\VisionCommon\bin\Debug\netcoreapp2.2\VisionCommon.pdb
+F:\alexstreetdev\cato-vision.net\VisionCommon\VisionCommon\obj\Debug\netcoreapp2.2\VisionCommon.csprojAssemblyReference.cache
+F:\alexstreetdev\cato-vision.net\VisionCommon\VisionCommon\obj\Debug\netcoreapp2.2\VisionCommon.csproj.CoreCompileInputs.cache
+F:\alexstreetdev\cato-vision.net\VisionCommon\VisionCommon\obj\Debug\netcoreapp2.2\VisionCommon.AssemblyInfoInputs.cache
+F:\alexstreetdev\cato-vision.net\VisionCommon\VisionCommon\obj\Debug\netcoreapp2.2\VisionCommon.AssemblyInfo.cs
+F:\alexstreetdev\cato-vision.net\VisionCommon\VisionCommon\obj\Debug\netcoreapp2.2\VisionCommon.dll
+F:\alexstreetdev\cato-vision.net\VisionCommon\VisionCommon\obj\Debug\netcoreapp2.2\VisionCommon.pdb
