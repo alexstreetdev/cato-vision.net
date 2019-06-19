@@ -2,8 +2,8 @@
 using System.Data;
 using System.Data.Common;
 using System.Threading.Tasks;
-using ImageStore.Models;
 using MySql.Data.MySqlClient;
+using VisionCommon.Models;
 
 namespace ImageStore.Services.Database
 {

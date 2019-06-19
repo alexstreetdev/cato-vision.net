@@ -1,6 +1,7 @@
 ﻿
-using ImageStore.Models;
+
 using System.Threading.Tasks;
+using VisionCommon.Models;
 
 namespace ImageStore
 {

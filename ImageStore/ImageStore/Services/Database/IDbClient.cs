@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using ImageStore.Models;
+using VisionCommon.Models;
 
 namespace ImageStore.Services.Database
 {

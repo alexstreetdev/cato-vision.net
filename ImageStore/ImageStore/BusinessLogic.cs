@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ImageStore.Models;
 using ImageStore.Services.Database;
+using VisionCommon.Models;
 
 namespace ImageStore
 {

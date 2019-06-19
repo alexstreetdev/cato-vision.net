@@ -1,8 +1,8 @@
 ﻿using System;
-using ImageStore.Models;
 using ImageStore.Services.Database;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using VisionCommon.Models;
 
 namespace ImageStoreTest.Services.Database
 {

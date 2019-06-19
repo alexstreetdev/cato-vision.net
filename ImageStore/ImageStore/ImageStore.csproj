@@ -21,4 +21,8 @@
     <PackageReference Include="MySql.Data" Version="8.0.15" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\VisionCommon\VisionCommon\VisionCommon.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ImageStore.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using VisionCommon.Models;
 
 namespace ImageStore.Controllers
 {
