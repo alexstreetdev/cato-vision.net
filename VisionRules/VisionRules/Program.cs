@@ -38,7 +38,7 @@ namespace VisionRules
 
             c.RegisterType<IEventHandler, EmptyHandler>("empty");
             c.RegisterType<IEventHandler, MovementDetectedHandler>("vision.evt.detected-movement");
-
+            c.RegisterType<IEventHandler, FaceDetectedHandler>("vision.evt.detected-face");
 
             return c;
         }
