@@ -21,15 +21,19 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-/VisionCommon/[Bb]in
-/VisionCommon/[Oo]bj/
-/VisionRules/[Bb]in
-/VisionRules/[Oo]bj/
-/ImageStore/[Bb]in
+/FaceIdAzure/[Bb]in/
+/FaceIdAzure/[Oo]bj/
+/ImageStore/[Bb]in/
 /ImageStore/[Oo]bj/
+/VisionCommon/[Bb]in/
+/VisionCommon/[Oo]bj/
+/VisionRules/[Bb]in/
+/VisionRules/[Oo]bj/
+
 
 
 # Visual Studio 2015 cache/options directory
+/FaceIdAzure/.vs/
 /VisionCommon/.vs/
 /VisionRules/.vs/
 /ImageStore/.vs/
