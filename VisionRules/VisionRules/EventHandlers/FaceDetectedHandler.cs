@@ -28,7 +28,7 @@ namespace VisionRules.EventHandlers
             };
 
             IBasicProperties props = channel.CreateBasicProperties();
-            channel.BasicPublish("msg_gateway", "vision.cmd.detectface", true, props, RabbitMqMessageHelper.GetModelAsMessagePayload(cmd));
+            channel.BasicPublish("msg_gateway", "vision.cmd.identify-face", true, props, RabbitMqMessageHelper.GetModelAsMessagePayload(cmd));
 
             channel.BasicAck(bdea.DeliveryTag, false);
 
