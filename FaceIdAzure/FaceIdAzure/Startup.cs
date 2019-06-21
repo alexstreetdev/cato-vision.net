@@ -25,12 +25,10 @@ namespace FaceIdAzure
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            var azc = new AzureConfig();
-            azc.Endpoint = Configuration["AzEndpoint"];
-            azc.ApiKey = Configuration["AzApiKey"];
+            var azc = Configuration.GetSection("Azure").Get<AzureConfig>();
+
             services.AddSingleton<AzureConfig>(azc);
             services.AddTransient<ICognitiveHttpClient, CognitiveHttpClient>();
-
 
             Console.WriteLine("Configured using Azure settings:");
             Console.WriteLine($"Endpoint {azc.Endpoint}");
