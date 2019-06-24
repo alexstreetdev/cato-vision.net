@@ -133,7 +133,7 @@ namespace FaceIdAzure
             var content = new ByteArrayContent(image.ToArray());
             content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 
-            HttpResponseMessage hrm = await _client.PostAsync("/detect", content);
+            HttpResponseMessage hrm = await _client.PostAsync("/detect?returnFaceAttributes=age,gender", content);
             string result = await hrm.Content.ReadAsStringAsync();
             var detectResponse = JsonConvert.DeserializeObject<DetectFaceResponse[]>(result);
 

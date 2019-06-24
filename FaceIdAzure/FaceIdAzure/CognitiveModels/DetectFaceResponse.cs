@@ -5,7 +5,8 @@ namespace FaceIdAzure.CognitiveModels
     {
         public string FaceId { get; set; }
         public FaceRectangle FaceRectangle { get; set; }
+        public FaceAttributes FaceAttributes { get; set; }
 
-        // Not included faceLandmarks or faceAttributes yet
+        // Not included faceLandmarks or most faceAttributes yet
     }
 }
