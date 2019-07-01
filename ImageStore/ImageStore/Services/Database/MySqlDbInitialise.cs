@@ -56,6 +56,8 @@ namespace ImageStore.Services.Database
                     @"X INT not null, Y INT not null," +
                     @"Width INT not null, Height INT not null," +
                     @"ContentDescription VARCHAR(255) not null," +
+                    @"ContentData VARCHAR(255)," +
+                    @"Source VARCHAR(100)," +
                     @"CreatedOn DATETIME(6) default CURRENT_TIMESTAMP(6) not null," +
                     @"INDEX ix_Content_ImageId (ImageId)," +
                     @"CONSTRAINT fk_ImageId FOREIGN KEY (ImageId) REFERENCES Image(ImageId) ON DELETE CASCADE);";
@@ -103,6 +105,8 @@ namespace ImageStore.Services.Database
                              "IN X INT, IN Y INT,\n" +
                              "IN Width INT, IN Height INT,\n" +
                              "IN ContentDescription VARCHAR(255),\n" +
+                             "IN ContentData VARCHAR(255),\n" +
+                             "IN Source VARCHAR(100),\n" +
                              "OUT NEWID BIGINT(20)\n)\n" +
                              " BEGIN\n INSERT INTO Content\n (ImageId,X,Y,Width,Height,ContentDescription)\n" +
                              " VALUES(ImageId,X,Y,Width,Height,ContentDescription);\n" +

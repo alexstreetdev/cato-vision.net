@@ -13,6 +13,8 @@ namespace VisionCommon.Models
         public int Width { get; set; }
         public int Height { get; set; }
         public string ContentDescription { get; set; }
+        public string ContentData { get; set; }
+        public string Source { get; set; }
         public DateTime? CreatedOn { get; set; }
     }
 }
