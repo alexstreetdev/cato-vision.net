@@ -5,7 +5,7 @@ namespace ImageStore.Services.Database
 {
     public interface IDbClient
     {
-
+        void InitialiseDatabase();
         string AddImage(Image img);
 
         Task<string> AddImageAsync(Image img);
