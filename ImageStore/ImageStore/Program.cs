@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace ImageStore
 {
@@ -18,6 +17,7 @@ namespace ImageStore
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     config.AddJsonFile("appsettings.json");
+                    config.AddCommandLine(args);
                 })
                 .UseStartup<Startup>()
                 .UseUrls(urls: "http://*:5000");
