@@ -4,44 +4,36 @@ using RabbitMQ.Client.Events;
 
 namespace VisionCommon.RabbitMq
 {
-    /// <summary>
-    /// Use when all messages on the queue are of the same type T
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class RabbitMqListener<T> : RabbitMqClient
+    public class RabbitMqListener
     {
-        private bool isListening;
-        public delegate void ExampleEventRecd(T ev, RabbitMqClient m);
-        public event ExampleEventRecd CommandReceived;
+        private readonly RabbitMqClient _mqClient;
+        private bool _isListening;
+        public delegate void MessageRecd(MqMessage<string> msg);
+        public event MessageRecd MessageReceived;
 
-        private Func<BasicDeliverEventArgs, T> _mapper;
-
-
-        public RabbitMqListener()
+        public RabbitMqListener(RabbitMqClient client)
         {
-            isListening = false;
+            _mqClient = client;
+            _isListening = false;
         }
 
 
-        public string StartListening(string sourceQueue, Func<BasicDeliverEventArgs, T> mapper)
+        public string StartListening(string sourceQueue)
         {
-            if (isListening) throw new Exception("Already listening");
-            var consumer = new EventingBasicConsumer(_mQchannel);
+            if (_isListening) throw new Exception("Already listening");
+            var consumer = new EventingBasicConsumer(_mqClient.Model);
             consumer.Received += ConsumerOnReceived;
-            string consumerTag = _mQchannel.BasicConsume(sourceQueue, false, consumer);
-            _mapper = mapper;
+            string consumerTag = _mqClient.Model.BasicConsume(sourceQueue, false, consumer);
+            _isListening = true;
             return consumerTag;
         }
 
         private void ConsumerOnReceived(object sender, BasicDeliverEventArgs bdea)
         {
-            if (CommandReceived == null) return;
+            if (MessageReceived == null) return;
 
-            var x = _mapper(bdea);
-            if (x == null) return;
-
-            CommandReceived(x, this);
-
+            var msg = MessageMap.Map(bdea);
+            MessageReceived(msg);
         }
 
     }

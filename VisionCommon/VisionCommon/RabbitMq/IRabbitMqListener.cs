@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VisionRules.MessageClient
+namespace VisionCommon.RabbitMq
 {
-    public class RabbitMqClient
+    public interface IRabbitMqListener
     {
 
-        
     }
 }

@@ -1,16 +1,19 @@
 ﻿
-
 using RabbitMQ.Client;
 
 namespace VisionCommon.RabbitMq
 {
-    public class RabbitMqClient
+    public class RabbitMqClient : IRabbitMqClient
     {
-        protected IConnection _mQconn;
-        protected IModel _mQchannel;
+        private IConnection _mQconn;
+        private IModel _mQchannel;
 
+        public IConnection Connection => _mQconn;
+        public IModel Model => _mQchannel;
 
-        protected RabbitMqClient()
+        public string Test { get; set; }
+
+        public RabbitMqClient()
         {
 
         }
@@ -19,7 +22,7 @@ namespace VisionCommon.RabbitMq
         {
             ConnectionFactory factory = new ConnectionFactory
             {
-                UserName = q.UserName,
+                UserName = q.Username,
                 Password = q.Password,
                 HostName = q.HostName
             };

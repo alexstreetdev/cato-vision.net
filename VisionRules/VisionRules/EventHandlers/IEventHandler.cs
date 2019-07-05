@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
+﻿
+using VisionCommon.RabbitMq;
 
 namespace VisionRules.EventHandlers
 {
     public interface IEventHandler
     {
-        string Handle(IModel channel, BasicDeliverEventArgs bdea);
+        EventHandlerResult Handle(MqMessage<string> msg);
 
     }
 }

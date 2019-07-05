@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
+using VisionCommon.RabbitMq;
 using VisionRules.Commands;
 using VisionRules.Events;
 using VisionRules.MessageClient;
@@ -12,17 +10,17 @@ namespace VisionRules.EventHandlers
 {
     public class MovementDetectedHandler : IEventHandler
     {
-        public MovementDetectedHandler()
+        private readonly IRabbitMqClient _client;
+        public MovementDetectedHandler(IRabbitMqClient client)
         {
-            
+            _client = client;
         }
-
-        public string Handle(IModel channel, BasicDeliverEventArgs bdea)
+        
+        public EventHandlerResult Handle(MqMessage<string> msg)
         {
             Console.WriteLine("Movement");
 
-            var bodystring = Encoding.UTF8.GetString(bdea.Body);
-            var model = JsonConvert.DeserializeObject<MovementDetectedEvent>(bodystring);
+            var model = JsonConvert.DeserializeObject<MovementDetectedEvent>(msg.Payload);
 
             // send updates
             var detectface = new DetectFaceCmd()
@@ -34,8 +32,8 @@ namespace VisionRules.EventHandlers
                 Width = model.Width,
                 Height = model.Height
             };
-            IBasicProperties props = channel.CreateBasicProperties();
-            channel.BasicPublish("msg_gateway", "vision.cmd.detectface", true, props, RabbitMqMessageHelper.GetModelAsMessagePayload(detectface));
+            IBasicProperties props = _client.Model.CreateBasicProperties();
+            _client.Model.BasicPublish("msg_gateway", "vision.cmd.detect-face", true, props, RabbitMqMessageHelper.GetModelAsMessagePayload(detectface));
 
             var detectbody = new DetectBodyCmd()
             {
@@ -46,11 +44,10 @@ namespace VisionRules.EventHandlers
                 Width = model.Width,
                 Height = model.Height
             };
-            channel.BasicPublish("msg_gateway", "vision.cmd.detectbody", true, props, RabbitMqMessageHelper.GetModelAsMessagePayload(detectbody));
+            _client.Model.BasicPublish("msg_gateway", "vision.cmd.detect-body", true, props, RabbitMqMessageHelper.GetModelAsMessagePayload(detectbody));
+            _client.AckMessage(msg.DeliveryTag);
 
-            channel.BasicAck(bdea.DeliveryTag, false);
-
-            return "result";
+            return new EventHandlerResult(){Success = true, MessageAcked = true};
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using VisionCommon.RabbitMq;
 
 namespace VisionRules.EventHandlers
 {
@@ -11,10 +12,10 @@ namespace VisionRules.EventHandlers
     /// </summary>
     public class EmptyHandler : IEventHandler
     {
-        public string Handle(IModel channel, BasicDeliverEventArgs bdea)
+        public EventHandlerResult Handle(MqMessage<string> msg)
         {
-            channel.BasicAck(bdea.DeliveryTag, false);
-            return "";
+            //channel.BasicAck(bdea.DeliveryTag, false);
+            return new EventHandlerResult(){Success = true, MessageAcked = false};
         }
     }
 }
