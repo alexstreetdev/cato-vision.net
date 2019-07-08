@@ -42,7 +42,8 @@ namespace VisionRules
         {
             var c = new UnityContainer();
 
-            _client = new RabbitMqClient();
+            var qos = cfg.GetSection("RabbitMq:MqQos").Get<MqQos>();
+            _client = new RabbitMqClient(qos);
             c.RegisterInstance<IRabbitMqClient>(_client);
             _listener = new RabbitMqListener<MqMessage<string>>(_client);
             c.RegisterInstance<IRabbitMqListener>(_listener);
@@ -61,9 +62,8 @@ namespace VisionRules
         private static void Recd(MqMessage<string> msg)
         {
             var hdler = GetHandler(msg.RoutingKey);
-            // todo check null
-            hdler.Handle(msg);
-            _client.AckMessage(msg.DeliveryTag);
+            hdler?.Handle(msg);
+            
         }
 
 
