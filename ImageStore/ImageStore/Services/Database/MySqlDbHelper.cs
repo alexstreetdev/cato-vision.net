@@ -60,6 +60,10 @@ namespace ImageStore.Services.Database
             cmd.Parameters["Height"].Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("ContentDescription", content.ContentDescription);
             cmd.Parameters["ContentDescription"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("ContentData", content.ContentData);
+            cmd.Parameters["ContentData"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("Source", content.Source);
+            cmd.Parameters["Source"].Direction = ParameterDirection.Input;
             cmd.Parameters.Add("NEWID", MySqlDbType.Int64);
             cmd.Parameters["NEWID"].Direction = ParameterDirection.Output;
 

@@ -108,8 +108,8 @@ namespace ImageStore.Services.Database
                              "IN ContentData VARCHAR(255),\n" +
                              "IN Source VARCHAR(100),\n" +
                              "OUT NEWID BIGINT(20)\n)\n" +
-                             " BEGIN\n INSERT INTO Content\n (ImageId,X,Y,Width,Height,ContentDescription)\n" +
-                             " VALUES(ImageId,X,Y,Width,Height,ContentDescription);\n" +
+                             " BEGIN\n INSERT INTO Content\n (ImageId,X,Y,Width,Height,ContentDescription,ContentData,Source)\n" +
+                             " VALUES(ImageId,X,Y,Width,Height,ContentDescription,ContentData,Source);\n" +
                              " SET NEWID = LAST_INSERT_ID();\n" +
                              "END;";
             var cmd1 = new MySqlCommand()

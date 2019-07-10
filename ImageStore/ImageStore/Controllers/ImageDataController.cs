@@ -46,9 +46,9 @@ namespace ImageStore.Controllers
                 await _bll.AddImageContentAsync(content);
                 return StatusCode(StatusCodes.Status202Accepted);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.ToString());
             }
         }
 
