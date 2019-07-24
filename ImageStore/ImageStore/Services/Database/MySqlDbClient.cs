@@ -46,7 +46,6 @@ namespace ImageStore.Services.Database
             OpenDbConnection();
             var rdr = await _db.ExecCommandAsync(cmd);
             rdr.Close();
-            //_db.Close();
             return img.ImageId;
         }
 
@@ -55,9 +54,7 @@ namespace ImageStore.Services.Database
             var cmd = MySqlDbHelper.AddImageContentCommand(ic);
             OpenDbConnection();
             DbDataReader r = await _db.ExecCommandAsync(cmd);
-            ic.ContentId = (long)r[0];
             r.Close();
-            //_db.Close();
             return ic;
         }
 
@@ -65,7 +62,7 @@ namespace ImageStore.Services.Database
         {
             var cmd = MySqlDbHelper.DeleteImageCommand(imageid);
             OpenDbConnection();
-            var x = _db.ExecNonQuery(cmd);
+            var x = await _db.ExecuteNonQueryAsync(cmd);
             return x;
         }
 

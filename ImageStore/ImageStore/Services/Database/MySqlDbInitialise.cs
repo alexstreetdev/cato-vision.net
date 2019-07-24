@@ -51,7 +51,7 @@ namespace ImageStore.Services.Database
         private void CreateContentTable()
         {
             var t = @"CREATE TABLE IF NOT EXISTS Content " +
-                    @"(ContentId BIGINT(20) unsigned not null auto_increment primary key," +
+                    @"(ContentId VARCHAR(100) not null primary key UNIQUE," +
                     @"ImageId VARCHAR(100) not null," +
                     @"X INT not null, Y INT not null," +
                     @"Width INT not null, Height INT not null," +
@@ -101,16 +101,15 @@ namespace ImageStore.Services.Database
         private void CreateInsertContentProc()
         {
             const string c = "CREATE OR REPLACE PROCEDURE prInsContent \n(\n" +
+                             "IN ContentId VARCHAR(100), \n" +
                              "IN ImageId VARCHAR(100),\n" +
                              "IN X INT, IN Y INT,\n" +
                              "IN Width INT, IN Height INT,\n" +
                              "IN ContentDescription VARCHAR(255),\n" +
                              "IN ContentData VARCHAR(255),\n" +
-                             "IN Source VARCHAR(100),\n" +
-                             "OUT NEWID BIGINT(20)\n)\n" +
-                             " BEGIN\n INSERT INTO Content\n (ImageId,X,Y,Width,Height,ContentDescription,ContentData,Source)\n" +
-                             " VALUES(ImageId,X,Y,Width,Height,ContentDescription,ContentData,Source);\n" +
-                             " SET NEWID = LAST_INSERT_ID();\n" +
+                             "IN Source VARCHAR(100)\n)\n" +
+                             " BEGIN\n INSERT INTO Content\n (ContentId,ImageId,X,Y,Width,Height,ContentDescription,ContentData,Source)\n" +
+                             " VALUES(ContentId,ImageId,X,Y,Width,Height,ContentDescription,ContentData,Source);\n" +
                              "END;";
             var cmd1 = new MySqlCommand()
             {

@@ -5,7 +5,7 @@ namespace VisionCommon.Models
 {
     public class ImageContent
     {
-        public long ContentId { get; set; }
+        public string ContentId { get; set; }
         public string ImageId { get; set; }
         public string ImageUrl { get; set; }
         public int X { get; set; }

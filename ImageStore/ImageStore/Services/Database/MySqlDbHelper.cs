@@ -46,8 +46,12 @@ namespace ImageStore.Services.Database
 
         public static MySqlCommand AddImageContentCommand(ImageContent content)
         {
-            var cmd = new MySqlCommand("prInsContent");
-            cmd.CommandType = CommandType.StoredProcedure;
+            var cmd = new MySqlCommand("prInsContent")
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.AddWithValue("ContentId", content.ContentId);
+            cmd.Parameters["ContentId"].Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("ImageId", content.ImageId);
             cmd.Parameters["ImageId"].Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("X", content.X);
@@ -64,8 +68,6 @@ namespace ImageStore.Services.Database
             cmd.Parameters["ContentData"].Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("Source", content.Source);
             cmd.Parameters["Source"].Direction = ParameterDirection.Input;
-            cmd.Parameters.Add("NEWID", MySqlDbType.Int64);
-            cmd.Parameters["NEWID"].Direction = ParameterDirection.Output;
 
             return cmd;
         }
